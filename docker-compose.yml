@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx-web:
-    image: nginx:stable-alpine
+    build: ./nginx
     labels:
         com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     container_name: ${NGINX_WEB:-nginx-web}
@@ -11,6 +11,7 @@ services:
       - "${IP:-0.0.0.0}:${DOCKER_HTTPS:-443}:443"
     volumes:
       - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
+      - ${NGINX_FILES_PATH:-./data}/streams:/etc/nginx/streams
       - ${NGINX_FILES_PATH:-./data}/vhost.d:/etc/nginx/vhost.d
       - ${NGINX_FILES_PATH:-./data}/html:/usr/share/nginx/html
       - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
