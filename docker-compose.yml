@@ -9,6 +9,7 @@ services:
     ports:
       - "${IP:-0.0.0.0}:${DOCKER_HTTP:-80}:80"
       - "${IP:-0.0.0.0}:${DOCKER_HTTPS:-443}:443"
+#     - "33063:3306"
     volumes:
       - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
       - ${NGINX_FILES_PATH:-./data}/streams:/etc/nginx/streams
